@@ -12,11 +12,14 @@ class Lizard():
 		else:
 			self.belly_size -= self.attack_power/city.defence_capability
 			if self.belly_size < 0:
+				self.is_hungry = False
 				city.population -= round(self.attack_power/city.defence_capability) - abs(self.belly_size)
 				print(f"{self.name} is satisfied and {city.population} people have survived.")
 			else:
-				new_population = city.population - round(self.attack_power/city.defence_capability)
+				people_eaten = round(self.attack_power/city.defence_capability)
+				new_population = city.population - people_eaten
 				city.population = new_population
+				print(f'{self.name} has ate {people_eaten}, {city.population} are left. {city.name} is preparing to attack.')
 				city.attack_lizard(self)
 class City():
 	def __init__(self, name, population, attack_power, defence_capability):
@@ -28,11 +31,12 @@ class City():
 	def attack_lizard(self, lizard):
 		lizard.health -= self.attack_power
 		if lizard.health < 0:
-			print(f'{lizard.name} had been defeated and its organs have been donated for medical research.')
+			print(f'{lizard.name} has been defeated and its organs have been donated for medical research.')
 		else:
+			print(f'{self.name} has removed {self.attack_power} from {lizard.name}\'s health. {lizard.name} has {lizard.health} health remaining.') 
 			lizard.attack_city(self)
 
 
-Godzilla = Lizard('Godzilla', 1000, 1000, False)
+Godzilla = Lizard('Godzilla', 1000, 1000, 500)
 Toyko = City('Toyko', 1500, 150, 10)
 Godzilla.attack_city(Toyko)
