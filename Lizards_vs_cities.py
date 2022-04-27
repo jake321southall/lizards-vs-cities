@@ -19,7 +19,7 @@ class Lizard():
 				people_eaten = round(self.attack_power/city.defence_capability)
 				new_population = city.population - people_eaten
 				city.population = new_population
-				print(f'{self.name} has ate {people_eaten}, {city.population} are left. {city.name} is preparing to attack.')
+				print(f'{self.name} has ate {people_eaten}, {city.population} are left. {city.name} is preparing to attack {self.name}.')
 				city.attack_lizard(self)
 class City():
 	def __init__(self, name, population, attack_power, defence_capability):
@@ -34,6 +34,7 @@ class City():
 			print(f'{lizard.name} has been defeated and its organs have been donated for medical research.')
 		else:
 			print(f'{self.name} has removed {self.attack_power} from {lizard.name}\'s health. {lizard.name} has {lizard.health} health remaining.') 
+			print(f'{lizard.name} is preparing to attack {self.name}.')
 			lizard.attack_city(self)
 
 
