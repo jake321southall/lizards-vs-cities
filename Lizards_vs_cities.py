@@ -45,6 +45,9 @@ class City():
 		self.attack_power = attack_power
 		self.defence_capability = defence_capability
 
+	def __repr__(self):
+		return f"This is the city {self.name}. It has a population of {self.population}, attack power of {self.attack_power}, and defence capability of {self.defence_capability}."
+
 	def attack_lizard(self, lizard):
 		lizard.health -= self.attack_power
 		if lizard.health < 0:
@@ -60,4 +63,5 @@ class City():
 Godzilla = Lizard('Godzilla', 1000, 1000, 500)
 Toyko = City('Toyko', 1500, 150, 10)
 print(Godzilla)
+print(Toyko)
 Godzilla.attack_city(Toyko)
