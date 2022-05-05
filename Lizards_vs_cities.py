@@ -20,16 +20,36 @@ if city_or_lizard_choice == 'Lizard':
 	lizard_choice = input('Would you like to be Godzilla or MechaGodzilla?')
 	while lizard_choice != 'Godzilla' and lizard_choice != 'MechaGodzilla':
 		lizard_choice = input('Please choose Godzilla or MechaGodzilla!')
+	if lizard_choice == 'Godzilla':
+		user = Godzilla
+	else:
+		user = MechaGodzilla
 	city_choice = input('Would you like to face Toyko or Babylon?')
 	while  city_choice != 'Toyko' and city_choice != 'Babylon':	
 		city_choice = input('Please choose Toyko or Babylon!')
+	if city_choice == 'Toyko':
+		opponent = Toyko
+	else:
+		opponent = Babylon
 else:
 	city_choice = input('Would you like to be Toyko or Babylon?')
 	while  city_choice != 'Toyko' and city_choice != 'Babylon':	
 		city_choice = input('Please choose Toyko or Babylon!')
+	if city_choice == 'Toyko':
+		user = Toyko
+	else:
+		user = Babylon
 	lizard_choice = input('Would you like to face Godzilla or MechaGodzilla?')
 	while lizard_choice != 'Godzilla' and lizard_choice != 'MechaGodzilla':
 		lizard_choice = input('Please choose Godzilla or MechaGodzilla!')
+	if lizard_choice == 'Godzilla':
+		opponent = Godzilla
+	else:
+		opponent = MechaGodzilla
+
+user.attack_lizard(opponent)
+
+
 
 
 
