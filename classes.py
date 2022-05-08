@@ -1,3 +1,5 @@
+from functions import *
+
 class Lizard():
 	def __init__(self, name, attack_power, belly_size, health, is_hungry = True, has_let_out_dying_roar = False, times_revived = 0):
 		self.name = name
@@ -28,14 +30,11 @@ class Lizard():
 				city.attack_lizard(self)
 		else:
 			self.belly_size -= self.attack_power/city.defence_capability
-			if self.belly_size < 0:
-				self.is_hungry = False
-				city.population -= round(self.attack_power/city.defence_capability) - abs(self.belly_size)
-				print(f"{self.name} is satisfied and {city.population} people have survived.")
+			if self.belly_size < 0 or city.population <= 0:
+				print(f"{self.name} has defeated {city.name}.") 
 			else:
 				people_eaten = round(self.attack_power/city.defence_capability)
-				new_population = city.population - people_eaten
-				city.population = new_population
+				city.population -= people_eaten
 				print(f'{self.name} has ate {people_eaten}, {city.population} are left. {city.name} is preparing to attack {self.name}.')
 				city.attack_lizard(self)
 class City():
@@ -50,7 +49,7 @@ class City():
 
 	def attack_lizard(self, lizard):
 		lizard.health -= self.attack_power
-		if lizard.health < 0:
+		if lizard.health <= 0:
 			print(f'{lizard.name} has been defeated and its organs have been donated for medical research.')
 		else:
 			if lizard.health < 250:

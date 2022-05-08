@@ -5,12 +5,13 @@ MechaGodzilla = Lizard('MechaGodzilla', 1500, 1100, 400)
 Toyko = City('Toyko', 1500, 150, 10)
 Babylon = City('Babylon', 600, 100, 20)
 
+lizard_list = [Godzilla, MechaGodzilla]
+city_list = [Toyko, Babylon]
+
 print("Hi! Welcome to the City Vs Lizards simulator. Here are your Lizard options:")
-print(Godzilla)
-print(MechaGodzilla)
+print(*lizard_list, sep = "\n")
 print("Here are your City options:")
-print(Toyko)
-print(Babylon)
+print(*city_list, sep = "\n")
 
 city_or_lizard_choice = input('Would you like to be a Lizard or a City?')
 while city_or_lizard_choice != 'Lizard' and city_or_lizard_choice != 'City':
