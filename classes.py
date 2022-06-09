@@ -36,7 +36,7 @@ class Lizard():
 				people_eaten = round(self.attack_power/city.defence_capability)
 				city.population -= people_eaten
 				print(f'{self.name} has ate {people_eaten}, {city.population} are left. {city.name} is preparing to attack {self.name}.')
-				city.attack_lizard(self)
+				city.attack_or_defend(self)
 class City():
 	def __init__(self, name, population, attack_power, defence_capability):
 		self.name = name
@@ -47,6 +47,18 @@ class City():
 	def __repr__(self):
 		return f"This is the city {self.name}. It has a population of {self.population}, attack power of {self.attack_power}, and defence capability of {self.defence_capability}."
 
+	def rebuild(self):
+		self.population += 500
+
+	def attack_or_defend(self, lizard):
+		attack_or_defend_choice = input("Would you like to attack or defend?")
+		while attack_or_defend_choice not in ['attack', 'defend']:
+			attack_or_defend_choice = input("Please choose attack or defend")
+		if attack_or_defend_choice == 'attack':
+			self.attack_lizard(lizard)
+		else:
+			self.rebuild()
+			lizard.attack_city(self)
 	def attack_lizard(self, lizard):
 		lizard.health -= self.attack_power
 		if lizard.health <= 0:
